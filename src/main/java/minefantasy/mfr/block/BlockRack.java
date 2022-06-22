@@ -49,7 +49,7 @@ public class BlockRack extends BlockWoodDecor {
 		setResistance(1.0F);
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		this.setCreativeTab(MineFantasyTabs.tabUtil);
 	}
 
@@ -184,7 +184,7 @@ public class BlockRack extends BlockWoodDecor {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.byIndex(meta);
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;

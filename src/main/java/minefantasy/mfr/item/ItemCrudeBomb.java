@@ -20,7 +20,7 @@ public class ItemCrudeBomb extends ItemBomb implements ISpecialSalvage {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack item) {
+	public String getUnlocalizedName(ItemStack item) {
 		return "item.bomb_crude";
 	}
 

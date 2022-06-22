@@ -77,8 +77,7 @@ public class BlockFrame extends BasicBlockMF {
 	}
 
 	@SideOnly(Side.CLIENT)
-	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

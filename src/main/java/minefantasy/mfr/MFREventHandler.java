@@ -5,7 +5,6 @@ import minefantasy.mfr.api.armour.ISpecialArmourMFR;
 import minefantasy.mfr.api.farming.FarmingHelper;
 import minefantasy.mfr.api.heating.IHotItem;
 import minefantasy.mfr.api.heating.TongsHelper;
-import minefantasy.mfr.api.stamina.CustomFoodEntry;
 import minefantasy.mfr.api.tool.ISmithTongs;
 import minefantasy.mfr.block.BlockComponent;
 import minefantasy.mfr.client.ClientItemsMFR;
@@ -110,7 +109,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,7 +123,6 @@ import static minefantasy.mfr.constants.Constants.CRAFTED_BY_NAME_TAG;
 @Mod.EventBusSubscriber
 public final class MFREventHandler {
 	private static final XSTRandom random = new XSTRandom();
-	public static final DecimalFormat decimal_format = new DecimalFormat("#.#");
 
 	private MFREventHandler() {} // No instances!
 
@@ -207,45 +204,6 @@ public final class MFREventHandler {
 		list.add(I18n.format("attribute.mfcrafteff.name") + ": " + efficiency);
 	}
 
-	/**
-	 * Adds a tooltip to the specified ItemStack about custom Food Stats (if it has info about the food in custom data)
-	 *
-	 * @param food the ItemStack
-	 * @param list the tooltip of the ItemStack
-	 */
-	private static void showFoodTooltip(ItemStack food, List<String> list) {
-		CustomFoodEntry foodEntry = CustomFoodEntry.getEntry(food);
-		if (foodEntry.hasEffect && ClientItemsMFR.showSpecials(list)) {
-			list.add("");
-			list.add(TextFormatting.WHITE + I18n.format("food.stat.list.name"));
-			if (foodEntry.eatDelay > 0) {
-				list.add(I18n.format("food.stat.eatDelay.name", decimal_format.format(foodEntry.eatDelay / 20)));
-			}
-			if (foodEntry.staminaRestore > 0) {
-				list.add(I18n.format("food.stat.staminaPlus.name", (int) foodEntry.staminaRestore));
-			}
-			if (foodEntry.staminaBuff > 0) {
-				if (foodEntry.staminaInHours) {
-					list.add(I18n.format("food.stat.staminabuffHours.name", decimal_format.format(foodEntry.staminaBuff), decimal_format.format(foodEntry.staminaSeconds / 3600F)));
-				} else if (foodEntry.staminaInMinutes) {
-					list.add(I18n.format("food.stat.staminabuffMinutes.name", decimal_format.format(foodEntry.staminaBuff), decimal_format.format(foodEntry.staminaSeconds / 60F)));
-				} else {
-					list.add(I18n.format("food.stat.staminabuffSeconds.name", decimal_format.format(foodEntry.staminaBuff), decimal_format.format(foodEntry.staminaSeconds)));
-				}
-			}
-			if (foodEntry.staminaRegenBuff > 0) {
-				if (foodEntry.staminaRegenInMinutes) {
-					list.add(I18n.format("food.stat.staminabuffRegenMinutes.name", decimal_format.format(foodEntry.staminaRegenBuff), decimal_format.format(foodEntry.staminaRegenSeconds / 60F)));
-				} else {
-					list.add(I18n.format("food.stat.staminabuffRegenSeconds.name", decimal_format.format(foodEntry.staminaRegenBuff), decimal_format.format(foodEntry.staminaRegenSeconds)));
-				}
-			}
-			if (foodEntry.fatAccumulation > 0) {
-				list.add(I18n.format("food.stat.fatAccumulation.name", decimal_format.format(foodEntry.fatAccumulation)));
-			}
-		}
-	}
-
 	// ================================================ Event Handlers ================================================
 
 	/**
@@ -318,7 +276,7 @@ public final class MFREventHandler {
 			if (event.getEntityPlayer() != null && event.getToolTip() != null && event.getFlags() != null) {
 				if (event.getItemStack().getItem() instanceof ItemArmor
 						&& (!(event.getItemStack().getItem() instanceof ItemArmourBaseMFR)
-						|| ClientItemsMFR.showSpecials(event.getToolTip()))) {
+						|| ClientItemsMFR.showSpecials(event.getItemStack(), event.getEntityPlayer().world, event.getToolTip(), event.getFlags()))) {
 					addArmorDamageReductionTooltip(event.getItemStack(), event.getEntityPlayer(), event.getToolTip(), event.getFlags().isAdvanced());
 				}
 			}
@@ -327,9 +285,6 @@ public final class MFREventHandler {
 			}
 			if (ToolHelper.shouldShowTooltip(event.getItemStack())) {
 				showCrafterTooltip(event.getItemStack(), event.getToolTip());
-			}
-			if (CustomFoodEntry.getEntry(event.getItemStack()) != null) {
-				showFoodTooltip(event.getItemStack(), event.getToolTip());
 			}
 			if (event.getItemStack().hasTagCompound() && event.getItemStack().getTagCompound().hasKey(CRAFTED_BY_NAME_TAG)) {
 				String name = event.getItemStack().getTagCompound().getString(CRAFTED_BY_NAME_TAG);
@@ -787,7 +742,8 @@ public final class MFREventHandler {
 				int slotIndex = slot.slotNumber;
 				if (slotIndex < (container.inventorySlots.size() - player.inventory.mainInventory.size())){
 					ItemStack stack = slot.getStack().copy();
-					if (stack.getItem() instanceof IHotItem && ConfigHardcore.HCChotBurn){
+					if (stack.getItem() instanceof IHotItem){
+
 						player.dropItem(stack, false);
 						container.putStackInSlot(slotIndex, ItemStack.EMPTY);
 						container.detectAndSendChanges();

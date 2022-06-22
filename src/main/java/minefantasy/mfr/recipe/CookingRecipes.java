@@ -93,7 +93,7 @@ public class CookingRecipes {
 	}
 
 	private static CookRecipe bakeCeramic(Item clay, Item ceramic, int temp, int time) {
-		if (!ConfigHardcore.preventCeramic) {
+		if (!ConfigHardcore.preventCook) {
 			GameRegistry.addSmelting(clay, new ItemStack(ceramic), 0F);
 		}
 		return MineFantasyReforgedAPI.addCookingRecipe(new ItemStack(clay), new ItemStack(ceramic), null, temp, 1000, time, 0,

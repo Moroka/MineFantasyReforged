@@ -20,9 +20,9 @@ public class ArrowFirerMF implements IArrowHandler {
 			return false;
 		}
 
-		float maxCharge;
+		float maxCharge = 20F;
 		if (!bow.isEmpty() && bow.getItem() instanceof ISpecialBow) {
-			maxCharge = ((ISpecialBow)bow.getItem()).getMaxCharge();
+			// maxCharge = ((ISpecialBow)bow.getItem()).getMaxCharge();
 		} else {
 			return false;
 		}

@@ -50,7 +50,7 @@ public class ItemNeedle extends ItemTool implements IToolMaterial, IToolMFR, ICl
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		this.tier = tier;
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		MineFantasyReforged.PROXY.addClientRegister(this);
 	}

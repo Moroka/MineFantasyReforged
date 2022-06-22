@@ -58,7 +58,7 @@ public class ItemTrow extends ItemSpade implements IToolMaterial, IClientRegiste
 		itemRarity = rarity;
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		setMaxDamage(material.getMaxUses());
 

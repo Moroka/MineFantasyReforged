@@ -49,7 +49,7 @@ public class ItemAxeMFR extends ItemAxe implements IToolMaterial, IClientRegiste
 		itemRarity = rarity;
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		MineFantasyReforged.PROXY.addClientRegister(this);
 	}

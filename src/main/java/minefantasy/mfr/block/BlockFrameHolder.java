@@ -29,7 +29,7 @@ public class BlockFrameHolder extends BasicBlockMF {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

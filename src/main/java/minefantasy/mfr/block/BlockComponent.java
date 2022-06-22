@@ -35,7 +35,7 @@ public class BlockComponent extends BlockTileEntity<TileEntityComponent> {
 		super(Material.CIRCUITS);
 
 		setRegistryName("component");
-		setTranslationKey("component");
+		setUnlocalizedName("component");
 		this.setHardness(1F);
 		this.setResistance(1F);
 
@@ -70,7 +70,7 @@ public class BlockComponent extends BlockTileEntity<TileEntityComponent> {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.byIndex(meta);
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;

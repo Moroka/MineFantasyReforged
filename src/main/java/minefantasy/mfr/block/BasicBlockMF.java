@@ -30,7 +30,7 @@ public class BasicBlockMF extends Block implements IClientRegister {
 		super(material);
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		if (material == Material.ROCK) {
 			this.setHarvestLevel("pickaxe", 0);
 		}
@@ -47,13 +47,13 @@ public class BasicBlockMF extends Block implements IClientRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isOpaqueCube(IBlockState state) {
-		return this.material != Material.GLASS;
+		return this.blockMaterial != Material.GLASS;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
-		if (this.material == Material.GLASS) {
+	public BlockRenderLayer getBlockLayer() {
+		if (this.blockMaterial == Material.GLASS) {
 			return BlockRenderLayer.CUTOUT;
 		}
 		return BlockRenderLayer.SOLID;

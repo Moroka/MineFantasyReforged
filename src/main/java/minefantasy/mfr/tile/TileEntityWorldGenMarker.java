@@ -23,14 +23,14 @@ public class TileEntityWorldGenMarker extends TileEntityBase implements ITickabl
 			Block block = Block.getBlockById(prevID);
 			world.setBlockState(pos, (block != null ? block.getDefaultState() : Blocks.AIR.getDefaultState()), 2);
 
-			StructureModuleMFR.placeStructure(className, type, length, deviation, world, pos, EnumFacing.byIndex(prevFacing), world.rand);
+			StructureModuleMFR.placeStructure(className, type, length, deviation, world, pos, EnumFacing.getFront(prevFacing), world.rand);
 		}
 
 		++ticks;
 	}
 
 	private boolean chunkLoaded() {
-		Chunk chunk = world.getChunk(pos);
+		Chunk chunk = world.getChunkFromBlockCoords(pos);
 		return chunk != null && chunk.isLoaded();
 	}
 

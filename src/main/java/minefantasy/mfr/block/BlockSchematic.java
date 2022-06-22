@@ -21,7 +21,7 @@ public class BlockSchematic extends Block {
 		super(Material.CLOTH);
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		this.setCreativeTab(MineFantasyTabs.tabMaterials);
 	}
@@ -37,7 +37,7 @@ public class BlockSchematic extends Block {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer()
+	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}

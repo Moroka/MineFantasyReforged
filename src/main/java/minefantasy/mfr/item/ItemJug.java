@@ -139,9 +139,6 @@ public class ItemJug extends ItemComponentMFR {
 		if (facingForPlacement != EnumFacing.UP && world.getBlockState(pos).getBlock() instanceof BlockComponent){
 			return EnumActionResult.FAIL;
 		}
-		if (!(world.getBlockState(pos).getBlock() instanceof BlockComponent) && !world.isSideSolid(pos, facingForPlacement)) {
-			return EnumActionResult.FAIL;
-		}
 
 		ItemStack stack = player.getHeldItem(hand);
 

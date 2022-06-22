@@ -50,7 +50,7 @@ public class ConstructionBlockMF extends BasicBlockMF {
 	}
 
 	public String getUnlocalizedName(ItemStack itemstack) {
-		return getTranslationKey() + "." + m_names[itemstack.getItemDamage()];
+		return getUnlocalizedName() + "." + m_names[itemstack.getItemDamage()];
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ConstructionBlockMF extends BasicBlockMF {
 			super(state);
 
 			setRegistryName(name);
-			setTranslationKey(name);
+			setUnlocalizedName(name);
 			this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 			this.setLightOpacity(0);// They seem to render shadows funny
 			MineFantasyReforged.PROXY.addClientRegister(this);

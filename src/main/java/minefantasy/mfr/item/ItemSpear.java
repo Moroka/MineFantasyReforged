@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
@@ -44,8 +45,7 @@ public class ItemSpear extends ItemWeaponMFR implements IExtendedReachWeapon {
 
 	@Override
 	public boolean allowOffhand(EntityLivingBase entity, EnumHand hand) {
-		ItemStack offhandStack = entity.getHeldItem(hand);
-		return offhandStack.getItem().isShield(offhandStack, entity) || offhandStack.isEmpty();
+		return entity.getHeldItem(hand).getItem() instanceof ItemShield || entity.getHeldItem(hand).isEmpty();
 	}
 
 	@Override
@@ -173,12 +173,7 @@ public class ItemSpear extends ItemWeaponMFR implements IExtendedReachWeapon {
 
 	@Override
 	public boolean canCounter() {
-		return true;
-	}
-
-	@Override
-	public float[] getCounterRatio() {
-		return crushingDamage;
+		return false;
 	}
 
 	@Override

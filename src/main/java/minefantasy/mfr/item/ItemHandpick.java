@@ -57,7 +57,9 @@ public class ItemHandpick extends ItemPickaxe implements IToolMaterial, IClientR
 		itemRarity = rarity;
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
+
+		this.setUnlocalizedName(name);
 		setMaxDamage(material.getMaxUses());
 
 		MineFantasyReforged.PROXY.addClientRegister(this);

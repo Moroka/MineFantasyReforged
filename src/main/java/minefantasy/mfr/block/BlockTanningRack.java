@@ -43,7 +43,7 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> imp
 		String name = "tanner" + tex;
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		this.setHardness(1F + 0.5F * tier);
 		this.setResistance(1F);
 		this.setLightOpacity(0);
@@ -91,7 +91,7 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> imp
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.byIndex(meta);
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;

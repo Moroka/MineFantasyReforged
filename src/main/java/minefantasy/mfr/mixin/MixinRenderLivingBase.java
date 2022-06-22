@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @SideOnly(Side.CLIENT)
-@Mixin(value = RenderLivingBase.class, remap = false)
+@Mixin(RenderLivingBase.class)
 public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends Render<T> {
 
 	protected MixinRenderLivingBase(RenderManager renderManager) {

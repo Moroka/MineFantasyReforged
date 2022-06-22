@@ -4,7 +4,6 @@ import minefantasy.mfr.api.heating.Heatable;
 import minefantasy.mfr.api.heating.IHotItem;
 import minefantasy.mfr.api.heating.TongsHelper;
 import minefantasy.mfr.client.render.item.RenderHotItem;
-import minefantasy.mfr.entity.EntityItemHeated;
 import minefantasy.mfr.init.MineFantasyItems;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.util.CustomToolHelper;
@@ -32,7 +31,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.List;
 
@@ -318,17 +316,6 @@ public class ItemHeated extends ItemBaseMFR implements IHotItem {
 	}
 
 	@Override
-	public boolean hasCustomEntity(ItemStack stack) {
-		return true;
-	}
-
-	@Nullable
-	@Override
-	public Entity createEntity(World world, Entity location, ItemStack itemstack) {
-		return new EntityItemHeated(world, (EntityItem) location);
-	}
-
-	@Override
 	public boolean onEntityItemUpdate(EntityItem entityItem) {
 		ItemStack stack = entityItem.getItem();
 		if (entityItem.getItem().getItem() instanceof ItemHeated && !entityItem.hasCustomName()){
@@ -342,6 +329,7 @@ public class ItemHeated extends ItemBaseMFR implements IHotItem {
 			if (entityItem.isInWater()){
 				entityItem.playSound(SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, 1F, 1F);
 				entityItem.setItem(cooledStack);
+
 			}
 		}
 		return false;

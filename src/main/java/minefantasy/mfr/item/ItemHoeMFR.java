@@ -41,7 +41,7 @@ public class ItemHoeMFR extends ItemHoe implements IToolMaterial, IClientRegiste
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		this.toolMaterial = material;
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		MineFantasyReforged.PROXY.addClientRegister(this);
 	}

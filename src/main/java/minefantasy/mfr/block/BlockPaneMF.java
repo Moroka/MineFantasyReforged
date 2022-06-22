@@ -17,7 +17,7 @@ public class BlockPaneMF extends BlockPane implements IClientRegister {
 		super(material, recoverable);
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		MineFantasyReforged.PROXY.addClientRegister(this);
 	}
 

@@ -32,7 +32,7 @@ public class BlockLeavesMF extends BlockLeaves implements IShearable, IClientReg
 		super();
 		String name = baseWood.toLowerCase() + "_leaves";
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		this.dropRate = droprate;
 		this.setTickRandomly(true);
 		MineFantasyReforged.PROXY.setGraphicsLevel(this, true);

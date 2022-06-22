@@ -41,7 +41,7 @@ public class BlockBigFurnace extends BlockTileEntity<TileEntityBigFurnace> imple
 		super(Material.ROCK);
 
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 		this.isHeater = isHeater;
 		this.tier = tier;
 		this.setCreativeTab(MineFantasyTabs.tabUtil);
@@ -118,7 +118,7 @@ public class BlockBigFurnace extends BlockTileEntity<TileEntityBigFurnace> imple
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.byIndex(meta);
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;

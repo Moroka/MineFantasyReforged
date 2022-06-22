@@ -203,7 +203,6 @@ public class MineFantasyReforged {
 		AnvilRecipeLoader.INSTANCE.postInit();
 
 		PROXY.postInit(postEvent);
-		PROXY.postInit();
 
 		// enabling this will dump all carpenter recipes to jsons! see RecipeExporter for path
 		// RecipeExporter exporter = new RecipeExporter();

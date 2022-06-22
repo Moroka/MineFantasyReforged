@@ -42,7 +42,7 @@ public class ItemBasicCraftTool extends ItemTool implements IToolMaterial, ITool
 
 		toolType = type;
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		setMaxDamage(uses);
 		this.setMaxStackSize(1);

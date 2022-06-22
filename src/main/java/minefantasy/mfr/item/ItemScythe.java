@@ -24,7 +24,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
@@ -72,7 +71,7 @@ public class ItemScythe extends Item implements IToolMaterial, IDamageType, IRac
 		this.setFull3D();
 		itemRarity = rarity;
 		setRegistryName(name);
-		setTranslationKey(name);
+		setUnlocalizedName(name);
 
 		setCreativeTab(MineFantasyTabs.tabOldTools);
 		this.maxStackSize = 1;
@@ -235,12 +234,6 @@ public class ItemScythe extends Item implements IToolMaterial, IDamageType, IRac
 	@Override
 	public int getMaxDamage(ItemStack stack) {
 		return CustomToolHelper.getMaxDamage(stack, super.getMaxDamage(stack));
-	}
-
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-		stack.damageItem(1, attacker);
-		return true;
 	}
 
 	public ItemStack construct(String main, String haft) {
